@@ -1,0 +1,414 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BE75300619975D6F0026F61C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75300519975D6F0026F61C /* AppDelegate.swift */; };
+		BE75300819975D6F0026F61C /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75300719975D6F0026F61C /* MasterViewController.swift */; };
+		BE75300A19975D6F0026F61C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75300919975D6F0026F61C /* DetailViewController.swift */; };
+		BE75300D19975D6F0026F61C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE75300B19975D6F0026F61C /* Main.storyboard */; };
+		BE75300F19975D6F0026F61C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE75300E19975D6F0026F61C /* Images.xcassets */; };
+		BE75301B19975D6F0026F61C /* DoyaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75301A19975D6F0026F61C /* DoyaTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BE75301519975D6F0026F61C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE752FF819975D6F0026F61C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BE752FFF19975D6F0026F61C;
+			remoteInfo = Doya;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BE75300019975D6F0026F61C /* Doya.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Doya.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE75300419975D6F0026F61C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE75300519975D6F0026F61C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BE75300719975D6F0026F61C /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		BE75300919975D6F0026F61C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		BE75300C19975D6F0026F61C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BE75300E19975D6F0026F61C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		BE75301419975D6F0026F61C /* DoyaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoyaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE75301919975D6F0026F61C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE75301A19975D6F0026F61C /* DoyaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoyaTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BE752FFD19975D6F0026F61C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE75301119975D6F0026F61C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BE752FF719975D6F0026F61C = {
+			isa = PBXGroup;
+			children = (
+				BE75300219975D6F0026F61C /* Doya */,
+				BE75301719975D6F0026F61C /* DoyaTests */,
+				BE75300119975D6F0026F61C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BE75300119975D6F0026F61C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BE75300019975D6F0026F61C /* Doya.app */,
+				BE75301419975D6F0026F61C /* DoyaTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BE75300219975D6F0026F61C /* Doya */ = {
+			isa = PBXGroup;
+			children = (
+				BE75300519975D6F0026F61C /* AppDelegate.swift */,
+				BE75300719975D6F0026F61C /* MasterViewController.swift */,
+				BE75300919975D6F0026F61C /* DetailViewController.swift */,
+				BE75300B19975D6F0026F61C /* Main.storyboard */,
+				BE75300E19975D6F0026F61C /* Images.xcassets */,
+				BE75300319975D6F0026F61C /* Supporting Files */,
+			);
+			path = Doya;
+			sourceTree = "<group>";
+		};
+		BE75300319975D6F0026F61C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BE75300419975D6F0026F61C /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BE75301719975D6F0026F61C /* DoyaTests */ = {
+			isa = PBXGroup;
+			children = (
+				BE75301A19975D6F0026F61C /* DoyaTests.swift */,
+				BE75301819975D6F0026F61C /* Supporting Files */,
+			);
+			path = DoyaTests;
+			sourceTree = "<group>";
+		};
+		BE75301819975D6F0026F61C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BE75301919975D6F0026F61C /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BE752FFF19975D6F0026F61C /* Doya */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE75301E19975D6F0026F61C /* Build configuration list for PBXNativeTarget "Doya" */;
+			buildPhases = (
+				BE752FFC19975D6F0026F61C /* Sources */,
+				BE752FFD19975D6F0026F61C /* Frameworks */,
+				BE752FFE19975D6F0026F61C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Doya;
+			productName = Doya;
+			productReference = BE75300019975D6F0026F61C /* Doya.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BE75301319975D6F0026F61C /* DoyaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE75302119975D6F0026F61C /* Build configuration list for PBXNativeTarget "DoyaTests" */;
+			buildPhases = (
+				BE75301019975D6F0026F61C /* Sources */,
+				BE75301119975D6F0026F61C /* Frameworks */,
+				BE75301219975D6F0026F61C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BE75301619975D6F0026F61C /* PBXTargetDependency */,
+			);
+			name = DoyaTests;
+			productName = DoyaTests;
+			productReference = BE75301419975D6F0026F61C /* DoyaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BE752FF819975D6F0026F61C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = vortispy;
+				TargetAttributes = {
+					BE752FFF19975D6F0026F61C = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					BE75301319975D6F0026F61C = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = BE752FFF19975D6F0026F61C;
+					};
+				};
+			};
+			buildConfigurationList = BE752FFB19975D6F0026F61C /* Build configuration list for PBXProject "Doya" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BE752FF719975D6F0026F61C;
+			productRefGroup = BE75300119975D6F0026F61C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BE752FFF19975D6F0026F61C /* Doya */,
+				BE75301319975D6F0026F61C /* DoyaTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BE752FFE19975D6F0026F61C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE75300D19975D6F0026F61C /* Main.storyboard in Resources */,
+				BE75300F19975D6F0026F61C /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE75301219975D6F0026F61C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BE752FFC19975D6F0026F61C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE75300A19975D6F0026F61C /* DetailViewController.swift in Sources */,
+				BE75300819975D6F0026F61C /* MasterViewController.swift in Sources */,
+				BE75300619975D6F0026F61C /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE75301019975D6F0026F61C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE75301B19975D6F0026F61C /* DoyaTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BE75301619975D6F0026F61C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BE752FFF19975D6F0026F61C /* Doya */;
+			targetProxy = BE75301519975D6F0026F61C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BE75300B19975D6F0026F61C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BE75300C19975D6F0026F61C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BE75301C19975D6F0026F61C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BE75301D19975D6F0026F61C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BE75301F19975D6F0026F61C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = Doya/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BE75302019975D6F0026F61C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = Doya/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		BE75302219975D6F0026F61C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = DoyaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Doya.app/Doya";
+			};
+			name = Debug;
+		};
+		BE75302319975D6F0026F61C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = DoyaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Doya.app/Doya";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BE752FFB19975D6F0026F61C /* Build configuration list for PBXProject "Doya" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE75301C19975D6F0026F61C /* Debug */,
+				BE75301D19975D6F0026F61C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BE75301E19975D6F0026F61C /* Build configuration list for PBXNativeTarget "Doya" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE75301F19975D6F0026F61C /* Debug */,
+				BE75302019975D6F0026F61C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		BE75302119975D6F0026F61C /* Build configuration list for PBXNativeTarget "DoyaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE75302219975D6F0026F61C /* Debug */,
+				BE75302319975D6F0026F61C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BE752FF819975D6F0026F61C /* Project object */;
+}
