@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		BE75300619975D6F0026F61C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75300519975D6F0026F61C /* AppDelegate.swift */; };
 		BE75300819975D6F0026F61C /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75300719975D6F0026F61C /* MasterViewController.swift */; };
-		BE75300A19975D6F0026F61C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75300919975D6F0026F61C /* DetailViewController.swift */; };
 		BE75300D19975D6F0026F61C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE75300B19975D6F0026F61C /* Main.storyboard */; };
 		BE75300F19975D6F0026F61C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE75300E19975D6F0026F61C /* Images.xcassets */; };
 		BE75301B19975D6F0026F61C /* DoyaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75301A19975D6F0026F61C /* DoyaTests.swift */; };
+		BE75302B199F2B140026F61C /* DoyaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75302A199F2B140026F61C /* DoyaCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,12 +30,12 @@
 		BE75300419975D6F0026F61C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE75300519975D6F0026F61C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE75300719975D6F0026F61C /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		BE75300919975D6F0026F61C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		BE75300C19975D6F0026F61C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BE75300E19975D6F0026F61C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		BE75301419975D6F0026F61C /* DoyaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoyaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE75301919975D6F0026F61C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE75301A19975D6F0026F61C /* DoyaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoyaTests.swift; sourceTree = "<group>"; };
+		BE75302A199F2B140026F61C /* DoyaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoyaCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,10 +79,10 @@
 			children = (
 				BE75300519975D6F0026F61C /* AppDelegate.swift */,
 				BE75300719975D6F0026F61C /* MasterViewController.swift */,
-				BE75300919975D6F0026F61C /* DetailViewController.swift */,
 				BE75300B19975D6F0026F61C /* Main.storyboard */,
 				BE75300E19975D6F0026F61C /* Images.xcassets */,
 				BE75300319975D6F0026F61C /* Supporting Files */,
+				BE75302A199F2B140026F61C /* DoyaCell.swift */,
 			);
 			path = Doya;
 			sourceTree = "<group>";
@@ -161,6 +161,7 @@
 				TargetAttributes = {
 					BE752FFF19975D6F0026F61C = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 9TU2LSCGS3;
 					};
 					BE75301319975D6F0026F61C = {
 						CreatedOnToolsVersion = 6.0;
@@ -211,7 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE75300A19975D6F0026F61C /* DetailViewController.swift in Sources */,
+				BE75302B199F2B140026F61C /* DoyaCell.swift in Sources */,
 				BE75300819975D6F0026F61C /* MasterViewController.swift in Sources */,
 				BE75300619975D6F0026F61C /* AppDelegate.swift in Sources */,
 			);
