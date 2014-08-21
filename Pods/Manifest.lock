@@ -1,0 +1,10 @@
+PODS:
+  - MessagePack (1.0.0)
+
+DEPENDENCIES:
+  - MessagePack
+
+SPEC CHECKSUMS:
+  MessagePack: c55b65c05ad745847208d9809a4419afb8149f59
+
+COCOAPODS: 0.33.1
