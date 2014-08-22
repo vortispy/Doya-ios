@@ -13,6 +13,8 @@
 		BE75300F19975D6F0026F61C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE75300E19975D6F0026F61C /* Images.xcassets */; };
 		BE75301B19975D6F0026F61C /* DoyaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75301A19975D6F0026F61C /* DoyaTests.swift */; };
 		BE75302B199F2B140026F61C /* DoyaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75302A199F2B140026F61C /* DoyaCell.swift */; };
+		BEBDEAEE19A784730022D5AE /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBDEAED19A784730022D5AE /* RankingViewController.swift */; };
+		BEBDEAF019A78AF80022D5AE /* RankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBDEAEF19A78AF80022D5AE /* RankCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		BE75301919975D6F0026F61C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE75301A19975D6F0026F61C /* DoyaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoyaTests.swift; sourceTree = "<group>"; };
 		BE75302A199F2B140026F61C /* DoyaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoyaCell.swift; sourceTree = "<group>"; };
+		BEBDEAED19A784730022D5AE /* RankingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
+		BEBDEAEF19A78AF80022D5AE /* RankCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,8 @@
 				BE75300E19975D6F0026F61C /* Images.xcassets */,
 				BE75300319975D6F0026F61C /* Supporting Files */,
 				BE75302A199F2B140026F61C /* DoyaCell.swift */,
+				BEBDEAED19A784730022D5AE /* RankingViewController.swift */,
+				BEBDEAEF19A78AF80022D5AE /* RankCell.swift */,
 			);
 			path = Doya;
 			sourceTree = "<group>";
@@ -214,7 +220,9 @@
 			files = (
 				BE75302B199F2B140026F61C /* DoyaCell.swift in Sources */,
 				BE75300819975D6F0026F61C /* MasterViewController.swift in Sources */,
+				BEBDEAF019A78AF80022D5AE /* RankCell.swift in Sources */,
 				BE75300619975D6F0026F61C /* AppDelegate.swift in Sources */,
+				BEBDEAEE19A784730022D5AE /* RankingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +408,7 @@
 				BE75302019975D6F0026F61C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BE75302119975D6F0026F61C /* Build configuration list for PBXNativeTarget "DoyaTests" */ = {
 			isa = XCConfigurationList;
@@ -408,6 +417,7 @@
 				BE75302319975D6F0026F61C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
