@@ -13,6 +13,7 @@
 		BE75300F19975D6F0026F61C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE75300E19975D6F0026F61C /* Images.xcassets */; };
 		BE75301B19975D6F0026F61C /* DoyaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75301A19975D6F0026F61C /* DoyaTests.swift */; };
 		BE75302B199F2B140026F61C /* DoyaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75302A199F2B140026F61C /* DoyaCell.swift */; };
+		BEB6F83919A8604B002BFCE9 /* DoyaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB6F83819A8604B002BFCE9 /* DoyaData.swift */; };
 		BEBDEAEE19A784730022D5AE /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBDEAED19A784730022D5AE /* RankingViewController.swift */; };
 		BEBDEAF019A78AF80022D5AE /* RankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBDEAEF19A78AF80022D5AE /* RankCell.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +39,7 @@
 		BE75301919975D6F0026F61C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE75301A19975D6F0026F61C /* DoyaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoyaTests.swift; sourceTree = "<group>"; };
 		BE75302A199F2B140026F61C /* DoyaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoyaCell.swift; sourceTree = "<group>"; };
+		BEB6F83819A8604B002BFCE9 /* DoyaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoyaData.swift; sourceTree = "<group>"; };
 		BEBDEAED19A784730022D5AE /* RankingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
 		BEBDEAEF19A78AF80022D5AE /* RankCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,6 +91,7 @@
 				BE75302A199F2B140026F61C /* DoyaCell.swift */,
 				BEBDEAED19A784730022D5AE /* RankingViewController.swift */,
 				BEBDEAEF19A78AF80022D5AE /* RankCell.swift */,
+				BEB6F83819A8604B002BFCE9 /* DoyaData.swift */,
 			);
 			path = Doya;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				BE75300819975D6F0026F61C /* MasterViewController.swift in Sources */,
 				BEBDEAF019A78AF80022D5AE /* RankCell.swift in Sources */,
 				BE75300619975D6F0026F61C /* AppDelegate.swift in Sources */,
+				BEB6F83919A8604B002BFCE9 /* DoyaData.swift in Sources */,
 				BEBDEAEE19A784730022D5AE /* RankingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
