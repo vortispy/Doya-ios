@@ -14,4 +14,7 @@ class DoyaData{
     var point: Int!
     var rank: Int!
     var image: UIImage!
+    
+    init(){}
+
 }
