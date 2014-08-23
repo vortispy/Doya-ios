@@ -37,27 +37,30 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ivc-6t-4Tk">
-                                            <rect key="frame" x="8" y="25" width="100" height="100"/>
+                                            <rect key="frame" x="8" y="0.0" width="150" height="150"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9P3-po-llj">
-                                            <rect key="frame" x="116" y="25" width="443" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwg-rO-8l3">
+                                            <rect key="frame" x="17" y="158" width="141" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="hoge" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d64-vr-bSc">
-                                            <rect key="frame" x="116" y="64" width="443" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avE-JF-0ae">
+                                            <rect key="frame" x="123" y="184" width="35" height="35"/>
+                                            <state key="normal" title="Button" image="bad"/>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="22B-9q-afr">
+                                            <rect key="frame" x="17" y="184" width="35" height="35"/>
+                                            <state key="normal" title="Button" image="good">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="nankaLabel" destination="9P3-po-llj" id="tzf-Ew-VUJ"/>
                                     <outlet property="pictureView" destination="Ivc-6t-4Tk" id="iZe-88-jAD"/>
-                                    <outlet property="subTitleLabel" destination="d64-vr-bSc" id="Eeo-BH-cyB"/>
+                                    <outlet property="pointLabel" destination="hwg-rO-8l3" id="3Kd-UH-cxq"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -77,7 +80,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Cn-md-YlS" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="831" y="-22"/>
+            <point key="canvasLocation" x="831" y="-23"/>
         </scene>
         <!--Ranking-->
         <scene sceneID="npM-Qb-DIQ">
@@ -390,4 +393,8 @@
             <point key="canvasLocation" x="-793" y="293"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bad" width="96" height="96"/>
+        <image name="good" width="96" height="96"/>
+    </resources>
 </document>

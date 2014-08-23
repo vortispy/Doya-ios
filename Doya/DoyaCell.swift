@@ -9,8 +9,7 @@
 import UIKit
 
 class DoyaCell: UITableViewCell {
-    @IBOutlet weak var nankaLabel: UILabel!
-    @IBOutlet weak var subTitleLabel: UILabel!
+    @IBOutlet weak var pointLabel: UILabel!
     @IBOutlet weak var pictureView: UIImageView!
 
     
@@ -26,8 +25,7 @@ class DoyaCell: UITableViewCell {
     }
     
     func configureCell(){
-        self.nankaLabel.text = "nanka Label"
-        self.subTitleLabel.text = "sub Title yade"
+        self.pointLabel.text = "0"
         self.pictureView.image = nil
     }
 
