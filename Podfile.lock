@@ -1,10 +1,17 @@
 PODS:
+  - DSRedis (0.0.1)
   - MessagePack (1.0.0)
 
 DEPENDENCIES:
+  - DSRedis (from `https://raw.githubusercontent.com/dictav/DSRedis/master/DSRedis.podspec`)
   - MessagePack
 
+EXTERNAL SOURCES:
+  DSRedis:
+    :podspec: https://raw.githubusercontent.com/dictav/DSRedis/master/DSRedis.podspec
+
 SPEC CHECKSUMS:
+  DSRedis: 6ffb5a5b743fd2b98c7643119a519c08845c7843
   MessagePack: c55b65c05ad745847208d9809a4419afb8149f59
 
 COCOAPODS: 0.33.1

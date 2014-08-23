@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "514AD46CF8BD4179935F262D"
-               BuildableName = "libPods-MessagePack.a"
-               BlueprintName = "Pods-MessagePack"
+               BlueprintIdentifier = "CE9CD97B85224FCAA70C8FEE"
+               BuildableName = "libPods-DSRedis.a"
+               BlueprintName = "Pods-DSRedis"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

@@ -6,6 +6,12 @@
 // project.
 
 
+// DSRedis
+#define COCOAPODS_POD_AVAILABLE_DSRedis
+#define COCOAPODS_VERSION_MAJOR_DSRedis 0
+#define COCOAPODS_VERSION_MINOR_DSRedis 0
+#define COCOAPODS_VERSION_PATCH_DSRedis 1
+
 // MessagePack
 #define COCOAPODS_POD_AVAILABLE_MessagePack
 #define COCOAPODS_VERSION_MAJOR_MessagePack 1
