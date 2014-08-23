@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3904A9286EE54EDBA62CA0B7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DB3AA359AA14B77818988B5 /* libPods.a */; };
 		BE75300619975D6F0026F61C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75300519975D6F0026F61C /* AppDelegate.swift */; };
 		BE75300819975D6F0026F61C /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75300719975D6F0026F61C /* MasterViewController.swift */; };
 		BE75300D19975D6F0026F61C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE75300B19975D6F0026F61C /* Main.storyboard */; };
@@ -29,6 +30,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1DB3AA359AA14B77818988B5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5167AC3D4D274A0BABBB00CC /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		A9345D5919A8B89400B9BBA5 /* DoyaTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DoyaTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		BE18016419A8A1AF00F635C2 /* Doya-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Doya-Bridging-Header.h"; sourceTree = "<group>"; };
 		BE75300019975D6F0026F61C /* Doya.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Doya.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE75300419975D6F0026F61C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE75300519975D6F0026F61C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3904A9286EE54EDBA62CA0B7 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +74,8 @@
 				BE75300219975D6F0026F61C /* Doya */,
 				BE75301719975D6F0026F61C /* DoyaTests */,
 				BE75300119975D6F0026F61C /* Products */,
+				5167AC3D4D274A0BABBB00CC /* Pods.xcconfig */,
+				E45A6636EBF94EBC9AF40CB2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,6 +100,7 @@
 				BEBDEAED19A784730022D5AE /* RankingViewController.swift */,
 				BEBDEAEF19A78AF80022D5AE /* RankCell.swift */,
 				BEB6F83819A8604B002BFCE9 /* DoyaData.swift */,
+				BE18016419A8A1AF00F635C2 /* Doya-Bridging-Header.h */,
 			);
 			path = Doya;
 			sourceTree = "<group>";
@@ -109,6 +118,7 @@
 			children = (
 				BE75301A19975D6F0026F61C /* DoyaTests.swift */,
 				BE75301819975D6F0026F61C /* Supporting Files */,
+				A9345D5919A8B89400B9BBA5 /* DoyaTests-Bridging-Header.h */,
 			);
 			path = DoyaTests;
 			sourceTree = "<group>";
@@ -121,6 +131,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E45A6636EBF94EBC9AF40CB2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DB3AA359AA14B77818988B5 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -128,9 +146,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE75301E19975D6F0026F61C /* Build configuration list for PBXNativeTarget "Doya" */;
 			buildPhases = (
+				57B1556F205740F1898E484C /* Check Pods Manifest.lock */,
 				BE752FFC19975D6F0026F61C /* Sources */,
 				BE752FFD19975D6F0026F61C /* Frameworks */,
 				BE752FFE19975D6F0026F61C /* Resources */,
+				D2443E4E061A470EA2157D2E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -215,6 +235,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		57B1556F205740F1898E484C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D2443E4E061A470EA2157D2E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BE752FFC19975D6F0026F61C /* Sources */ = {
@@ -339,30 +392,39 @@
 		};
 		BE75301F19975D6F0026F61C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5167AC3D4D274A0BABBB00CC /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Doya/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Doya/Doya-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		BE75302019975D6F0026F61C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5167AC3D4D274A0BABBB00CC /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Doya/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Doya/Doya-Bridging-Header.h";
 			};
 			name = Release;
 		};
 		BE75302219975D6F0026F61C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5167AC3D4D274A0BABBB00CC /* Pods.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -374,6 +436,8 @@
 				INFOPLIST_FILE = DoyaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DoyaTests/DoyaTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Doya.app/Doya";
 			};
 			name = Debug;
@@ -382,6 +446,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -389,6 +454,7 @@
 				INFOPLIST_FILE = DoyaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DoyaTests/DoyaTests-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Doya.app/Doya";
 			};
 			name = Release;

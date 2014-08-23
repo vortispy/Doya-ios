@@ -24,6 +24,9 @@ class DoyaTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         XCTAssert(true, "Pass")
+        
+        let redis = DSRedis(server:"localhost", port:6379, password: nil)
+        XCTAssertTrue(redis.ping())
     }
     
     func testPerformanceExample() {
