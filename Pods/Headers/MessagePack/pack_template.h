@@ -1,1 +1,0 @@
-../../MessagePack/msgpack_src/msgpack/pack_template.h
