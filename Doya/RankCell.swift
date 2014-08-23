@@ -27,6 +27,6 @@ class RankCell: UITableViewCell {
     func configureCell(rank: String){
         self.rankPointLabel.text = rank
         self.rankIcon.image = UIImage(named: rank)
-        self.pictureView.image = nil
+        
     }
 }

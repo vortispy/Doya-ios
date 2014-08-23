@@ -42,7 +42,6 @@ class RankingViewController: UITableViewController {
 
 
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-        println(indexPath.row)
         let cell = tableView.dequeueReusableCellWithIdentifier(self.rankArray[indexPath.row], forIndexPath: indexPath) as RankCell
         cell.configureCell(self.rankArray[indexPath.row])
 

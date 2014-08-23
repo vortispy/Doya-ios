@@ -34,10 +34,7 @@ class MasterViewController: UITableViewController {
     }
 
     @IBAction func insertNewObject(sender: AnyObject) {
-        if objects == nil {
-            objects = NSMutableArray()
-        }
-        objects.insertObject("fuj", atIndex: 0)
+        objects.insertObject(DoyaData(), atIndex: 0)
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
         self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
@@ -59,14 +56,18 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let data = objects[indexPath.row] as DoyaData
+        if data.point == nil{
+            data.point = 0
+        }
         let cell = tableView.dequeueReusableCellWithIdentifier("DoyaCell", forIndexPath: indexPath) as DoyaCell
-        cell.configureCell()
+        cell.configureCell(data)
         return cell
     }
     
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return true
+        return false
     }
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
