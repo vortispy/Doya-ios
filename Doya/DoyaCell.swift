@@ -12,6 +12,7 @@ class DoyaCell: UITableViewCell {
     @IBOutlet weak var pointLabel: UILabel!
     @IBOutlet weak var pictureView: UIImageView!
     
+    var doya: DoyaData?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,13 +26,8 @@ class DoyaCell: UITableViewCell {
     }
     
     func configureCell(data: DoyaData){
-        if data.point == nil{
-            self.pointLabel.text = "0"
-        } else{
-            self.pointLabel.text = toString(data.point)
-        }
-        
-
+        self.doya = data
+        self.pointLabel.text = String(self.doya!.point)
         
         var url = NSURL(string: "http://upload.wikimedia.org/wikipedia/commons/b/bc/Kolkrabe.jpg")
 
@@ -52,5 +48,14 @@ class DoyaCell: UITableViewCell {
             self.pictureView.image = image
         }
     }
-
+    
+    @IBAction func goodDoya(){
+        self.doya!.point += 1
+        self.pointLabel.text = String(self.doya!.point)
+    }
+    
+    @IBAction func badDoya(){
+        self.doya!.point -= 1
+        self.pointLabel.text = String(self.doya!.point)
+    }
 }
