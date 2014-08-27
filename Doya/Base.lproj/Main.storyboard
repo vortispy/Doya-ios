@@ -48,12 +48,18 @@
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avE-JF-0ae">
                                             <rect key="frame" x="123" y="184" width="35" height="35"/>
                                             <state key="normal" title="Button" image="bad"/>
+                                            <connections>
+                                                <action selector="badDoya" destination="m0d-ak-lc9" eventType="touchUpInside" id="3BK-of-YdX"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="22B-9q-afr">
                                             <rect key="frame" x="17" y="184" width="35" height="35"/>
                                             <state key="normal" title="Button" image="good">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="goodDoya" destination="m0d-ak-lc9" eventType="touchUpInside" id="NX6-uQ-MRb"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
