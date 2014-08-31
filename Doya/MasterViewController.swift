@@ -48,12 +48,68 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
     }
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]!) {
-        print(info)
-        if let url = info[UIImagePickerControllerReferenceURL] as? NSURL{
-            print(url)
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage{
+            let convertedImage = convertImage(image)
+            
+            let data = UIImageJPEGRepresentation(convertedImage, 1.0)
+            
+            let requestURL = NSURL(string: "http://ds-s3-uploader.herokuapp.com/upload")
+            let request = NSMutableURLRequest(URL: requestURL)
+            request.HTTPMethod = "POST"
+            let session = NSURLSession.sharedSession()
+            let queue = session.delegateQueue
+            let task = session.uploadTaskWithRequest(request, fromData: data) { (resData, response, error) -> Void in
+                let res = response as NSHTTPURLResponse
+                if res.statusCode == 200{
+                    let dataURL = NSString(data: resData, encoding: NSUTF8StringEncoding)
+                    print(dataURL)
+                    self.pushFileNameToRedis(dataURL)
+                }
+            }
+            task.resume()
+            
+            queue.waitUntilAllOperationsAreFinished()
+            NSThread.sleepForTimeInterval(3)
+
         }
+
+
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    func convertImage(image: UIImage) ->UIImage{
+        let scaleImage = convertImageScale(image)
+        let dataSizeImage = reduceImageDataSize(scaleImage)
+
+        return dataSizeImage
+    }
+    
+    func convertImageScale(image: UIImage) ->UIImage{
+        let width = 600 as CGFloat
+        let height = 600 as CGFloat
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: width, height: height), false, 1.0)
+        image.drawInRect(CGRectMake(0,0,width,height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+
+        return newImage
+    }
+    
+    func reduceImageDataSize(image: UIImage) ->UIImage{
+        var data : NSData
+        var quality = 1.0 as CGFloat
+        do {
+            quality -= 0.1
+            data = UIImageJPEGRepresentation(image, quality)
+        } while (data.length < 10000)
+
+        return image
+    }
+    
+    func pushFileNameToRedis(fileURL: NSString) {
+        fileURL
+    }
+
     
     // MARK: - Segues
 
