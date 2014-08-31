@@ -17,6 +17,7 @@
 		BEB6F83919A8604B002BFCE9 /* DoyaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB6F83819A8604B002BFCE9 /* DoyaData.swift */; };
 		BEBDEAEE19A784730022D5AE /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBDEAED19A784730022D5AE /* RankingViewController.swift */; };
 		BEBDEAF019A78AF80022D5AE /* RankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBDEAEF19A78AF80022D5AE /* RankCell.swift */; };
+		BEEC29FE19B30B2A002D7BE5 /* sample.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BEEC29FD19B30B2A002D7BE5 /* sample.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		BEB6F83819A8604B002BFCE9 /* DoyaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoyaData.swift; sourceTree = "<group>"; };
 		BEBDEAED19A784730022D5AE /* RankingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
 		BEBDEAEF19A78AF80022D5AE /* RankCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankCell.swift; sourceTree = "<group>"; };
+		BEEC29FD19B30B2A002D7BE5 /* sample.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sample.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 		BE75301819975D6F0026F61C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BEEC29FD19B30B2A002D7BE5 /* sample.jpg */,
 				BE75301919975D6F0026F61C /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -231,6 +234,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEEC29FE19B30B2A002D7BE5 /* sample.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
