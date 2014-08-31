@@ -77,6 +77,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="ImageList" id="tQt-TN-PWz">
+                        <barButtonItem key="leftBarButtonItem" title="Add Image" id="lt9-77-aQ0">
+                            <connections>
+                                <action selector="addImage" destination="pGg-6v-bdr" id="Xim-Fc-BFC"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Qu2-9Y-awP">
                             <connections>
                                 <action selector="insertNewObject:" destination="pGg-6v-bdr" id="TMx-WH-SOj"/>

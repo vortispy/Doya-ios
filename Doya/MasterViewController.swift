@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MasterViewController: UITableViewController {
+class MasterViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var objects = NSMutableArray()
     
@@ -38,7 +38,23 @@ class MasterViewController: UITableViewController {
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
         self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
-
+    
+    @IBAction func addImage(){
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+//        [self presentViewController:imagePicker animated:YES completion:nil];
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController!, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]!) {
+        print(info)
+        if let url = info[UIImagePickerControllerReferenceURL] as? NSURL{
+            print(url)
+        }
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     // MARK: - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
