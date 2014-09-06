@@ -34,6 +34,7 @@
 		1DB3AA359AA14B77818988B5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5167AC3D4D274A0BABBB00CC /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		A9345D5919A8B89400B9BBA5 /* DoyaTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DoyaTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		BE05E4A419BB091800BFCC9A /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		BE18016419A8A1AF00F635C2 /* Doya-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Doya-Bridging-Header.h"; sourceTree = "<group>"; };
 		BE75300019975D6F0026F61C /* Doya.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Doya.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE75300419975D6F0026F61C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -103,6 +104,7 @@
 				BEBDEAEF19A78AF80022D5AE /* RankCell.swift */,
 				BEB6F83819A8604B002BFCE9 /* DoyaData.swift */,
 				BE18016419A8A1AF00F635C2 /* Doya-Bridging-Header.h */,
+				BE05E4A419BB091800BFCC9A /* MyPlayground.playground */,
 			);
 			path = Doya;
 			sourceTree = "<group>";

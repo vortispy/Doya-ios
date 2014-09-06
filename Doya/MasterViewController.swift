@@ -119,7 +119,7 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
     }
     
     
-    let MaxImageDataSize = 2^10*2^10
+    let MaxImageDataSize = 1048576 // 1024*1024
     let MaxQuality: CGFloat = 1.0
     let MinQuality: CGFloat = 0.5
     func reduceImageDataSize(image: UIImage) ->NSData{
@@ -127,14 +127,14 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
         var quality = MaxQuality as CGFloat
         do {
             data = UIImageJPEGRepresentation(image, quality)
-            print("data.length: \(data.length)bytes\n")
             quality -= 0.1
             if (quality < MinQuality){
                 print("reduceImageDataSize: \(quality)\n")
+                print("data.length: \(data.length)bytes\n")
                 break;
             }
         } while (data.length > MaxImageDataSize)
-        print("data.length: \(data.length)bytes\n")
+
 
         return data
     }
