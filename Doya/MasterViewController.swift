@@ -69,7 +69,16 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
                 if res.statusCode == 200{
                     let dataURL = NSString(data: resData, encoding: NSUTF8StringEncoding)
                     print(dataURL)
-                    self.pushFileNameToRedis(dataURL)
+                    let redisResponse: AnyObject? = self.pushFileNameToRedis(dataURL)
+                    if redisResponse == nil{
+                        NSOperationQueue.mainQueue().addOperationWithBlock({
+                            UIAlertView(title: "アップロードに失敗しました",
+                                message: "Redis ERROR",
+                                delegate: nil,
+                                cancelButtonTitle: "OK").show();
+                            return
+                        })
+                    }
                 } else{
                     let resMessage = NSString(data: resData, encoding: NSUTF8StringEncoding)
                     print("\(res.statusCode): ")
@@ -118,6 +127,7 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
         var quality = MaxQuality as CGFloat
         do {
             data = UIImageJPEGRepresentation(image, quality)
+            print("data.length: \(data.length)bytes\n")
             quality -= 0.1
             if (quality < MinQuality){
                 print("reduceImageDataSize: \(quality)\n")
@@ -129,8 +139,16 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
         return data
     }
     
-    func pushFileNameToRedis(fileURL: NSString) {
-        fileURL
+    let RedisFileScoreSortedSetsKey = "fileScores"
+    func pushFileNameToRedis(fileURL: NSString) -> AnyObject? {
+        let redis = DSRedis(server:"localhost", port:6379, password: nil)
+        let timeNow = NSDate().timeIntervalSince1970 as NSNumber
+        if let ret: AnyObject = redis.addValue(fileURL, withScore: timeNow, forKey: RedisFileScoreSortedSetsKey){
+            return ret
+        } else{
+            print("Redis ZADD failed: key=\(RedisFileScoreSortedSetsKey), member=\(fileURL), score=\(timeNow)")
+        }
+        return nil
     }
 
     

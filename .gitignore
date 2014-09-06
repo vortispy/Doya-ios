@@ -19,3 +19,5 @@ profile
 DerivedData
 Pod*
 !Podfile
+# Redis DB
+dump.rdb
