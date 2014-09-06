@@ -49,6 +49,10 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]!) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage{
             let convertedData = convertImage(image)
+            if convertedData == nil{
+                self.imageUploadErrorMessageDialog("画像が大きすぎます")
+                return
+            }
             
             let requestURL = NSURL(string: "http://ds-s3-uploader.herokuapp.com/upload")
             let request = NSMutableURLRequest(URL: requestURL)
@@ -57,12 +61,7 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
             let queue = session.delegateQueue
             let task = session.uploadTaskWithRequest(request, fromData: convertedData) { (resData, response, error) -> Void in
                 if error != nil {
-                    NSOperationQueue.mainQueue().addOperationWithBlock({
-                        UIAlertView(title: "TITLE",
-                            message: "ネットワークつなげよ",
-                            delegate: nil,
-                            cancelButtonTitle: "OK").show();
-                    })
+                    self.imageUploadErrorMessageDialog("ネットワークにつないでください")
                     return
                 }
                 let res = response as NSHTTPURLResponse
@@ -71,25 +70,13 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
                     print(dataURL)
                     let redisResponse: AnyObject? = self.pushFileNameToRedis(dataURL)
                     if redisResponse == nil{
-                        NSOperationQueue.mainQueue().addOperationWithBlock({
-                            UIAlertView(title: "アップロードに失敗しました",
-                                message: "Redis ERROR",
-                                delegate: nil,
-                                cancelButtonTitle: "OK").show();
-                            return
-                        })
+                        self.imageUploadErrorMessageDialog("Redis ERROR")
                     }
                 } else{
                     let resMessage = NSString(data: resData, encoding: NSUTF8StringEncoding)
                     print("\(res.statusCode): ")
                     print("\(resMessage)\n")
-                    NSOperationQueue.mainQueue().addOperationWithBlock({
-                        UIAlertView(title: "アップロードに失敗しました",
-                            message: "\(res.statusCode): \(resMessage)",
-                            delegate: nil,
-                            cancelButtonTitle: "OK").show();
-                        return
-                    })
+                    self.imageUploadErrorMessageDialog("\(res.statusCode): \(resMessage)")
                 }
             }
             task.resume()
@@ -101,7 +88,17 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func convertImage(image: UIImage) ->NSData{
+    func imageUploadErrorMessageDialog(message: String){
+        NSOperationQueue.mainQueue().addOperationWithBlock({
+            UIAlertView(title: "アップロードに失敗しました",
+                message: message,
+                delegate: nil,
+                cancelButtonTitle: "OK").show();
+            return
+        })
+    }
+    
+    func convertImage(image: UIImage) -> NSData?{
         let scaleImage = convertImageScale(image)
         let dataSizeImage = reduceImageDataSize(scaleImage)
 
@@ -122,7 +119,7 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
     let MaxImageDataSize = 1048576 // 1024*1024
     let MaxQuality: CGFloat = 1.0
     let MinQuality: CGFloat = 0.5
-    func reduceImageDataSize(image: UIImage) ->NSData{
+    func reduceImageDataSize(image: UIImage) -> NSData?{
         var data : NSData
         var quality = MaxQuality as CGFloat
         do {
@@ -131,7 +128,7 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
             if (quality < MinQuality){
                 print("reduceImageDataSize: \(quality)\n")
                 print("data.length: \(data.length)bytes\n")
-                break;
+                return nil
             }
         } while (data.length > MaxImageDataSize)
 
