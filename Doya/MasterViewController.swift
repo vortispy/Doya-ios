@@ -43,67 +43,90 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-//        [self presentViewController:imagePicker animated:YES completion:nil];
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]!) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage{
-            let convertedImage = convertImage(image)
-            
-            let data = UIImageJPEGRepresentation(convertedImage, 1.0)
+            let convertedData = convertImage(image)
             
             let requestURL = NSURL(string: "http://ds-s3-uploader.herokuapp.com/upload")
             let request = NSMutableURLRequest(URL: requestURL)
             request.HTTPMethod = "POST"
             let session = NSURLSession.sharedSession()
             let queue = session.delegateQueue
-            let task = session.uploadTaskWithRequest(request, fromData: data) { (resData, response, error) -> Void in
+            let task = session.uploadTaskWithRequest(request, fromData: convertedData) { (resData, response, error) -> Void in
+                if error != nil {
+                    NSOperationQueue.mainQueue().addOperationWithBlock({
+                        UIAlertView(title: "TITLE",
+                            message: "ネットワークつなげよ",
+                            delegate: nil,
+                            cancelButtonTitle: "OK").show();
+                    })
+                    return
+                }
                 let res = response as NSHTTPURLResponse
                 if res.statusCode == 200{
                     let dataURL = NSString(data: resData, encoding: NSUTF8StringEncoding)
                     print(dataURL)
                     self.pushFileNameToRedis(dataURL)
+                } else{
+                    let resMessage = NSString(data: resData, encoding: NSUTF8StringEncoding)
+                    print("\(res.statusCode): ")
+                    print("\(resMessage)\n")
+                    NSOperationQueue.mainQueue().addOperationWithBlock({
+                        UIAlertView(title: "アップロードに失敗しました",
+                            message: "\(res.statusCode): \(resMessage)",
+                            delegate: nil,
+                            cancelButtonTitle: "OK").show();
+                        return
+                    })
                 }
             }
             task.resume()
             
             queue.waitUntilAllOperationsAreFinished()
-            NSThread.sleepForTimeInterval(3)
-
         }
 
 
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func convertImage(image: UIImage) ->UIImage{
+    func convertImage(image: UIImage) ->NSData{
         let scaleImage = convertImageScale(image)
         let dataSizeImage = reduceImageDataSize(scaleImage)
 
         return dataSizeImage
     }
     
+    let MaxImageSize : CGSize = CGSizeMake(600, 600)
     func convertImageScale(image: UIImage) ->UIImage{
-        let width = 600 as CGFloat
-        let height = 600 as CGFloat
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: width, height: height), false, 1.0)
-        image.drawInRect(CGRectMake(0,0,width,height))
+        UIGraphicsBeginImageContextWithOptions(MaxImageSize, false, 0.0)
+        image.drawInRect(CGRectMake(0, 0, MaxImageSize.width, MaxImageSize.height))
         let newImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
 
         return newImage
     }
     
-    func reduceImageDataSize(image: UIImage) ->UIImage{
+    
+    let MaxImageDataSize = 2^10*2^10
+    let MaxQuality: CGFloat = 1.0
+    let MinQuality: CGFloat = 0.5
+    func reduceImageDataSize(image: UIImage) ->NSData{
         var data : NSData
-        var quality = 1.0 as CGFloat
+        var quality = MaxQuality as CGFloat
         do {
-            quality -= 0.1
             data = UIImageJPEGRepresentation(image, quality)
-        } while (data.length < 10000)
+            quality -= 0.1
+            if (quality < MinQuality){
+                print("reduceImageDataSize: \(quality)\n")
+                break;
+            }
+        } while (data.length > MaxImageDataSize)
+        print("data.length: \(data.length)bytes\n")
 
-        return image
+        return data
     }
     
     func pushFileNameToRedis(fileURL: NSString) {
