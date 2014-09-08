@@ -69,16 +69,7 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
                 if res.statusCode == 200{
                     let dataURL = NSString(data: resData, encoding: NSUTF8StringEncoding)
                     print(dataURL)
-                    let redisResponse: AnyObject? = self.pushFileNameToRedis(dataURL)
-                    if redisResponse == nil{
-                        NSOperationQueue.mainQueue().addOperationWithBlock({
-                            UIAlertView(title: "アップロードに失敗しました",
-                                message: "Redis ERROR",
-                                delegate: nil,
-                                cancelButtonTitle: "OK").show();
-                            return
-                        })
-                    }
+                    self.pushFileNameToRedis(dataURL)
                 } else{
                     let resMessage = NSString(data: resData, encoding: NSUTF8StringEncoding)
                     print("\(res.statusCode): ")
@@ -119,7 +110,7 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
     }
     
     
-    let MaxImageDataSize = 1048576 // 1024*1024
+    let MaxImageDataSize = 2^10*2^10
     let MaxQuality: CGFloat = 1.0
     let MinQuality: CGFloat = 0.5
     func reduceImageDataSize(image: UIImage) ->NSData{
@@ -130,25 +121,16 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
             quality -= 0.1
             if (quality < MinQuality){
                 print("reduceImageDataSize: \(quality)\n")
-                print("data.length: \(data.length)bytes\n")
                 break;
             }
         } while (data.length > MaxImageDataSize)
-
+        print("data.length: \(data.length)bytes\n")
 
         return data
     }
     
-    let RedisFileScoreSortedSetsKey = "fileScores"
-    func pushFileNameToRedis(fileURL: NSString) -> AnyObject? {
-        let redis = DSRedis(server:"localhost", port:6379, password: nil)
-        let timeNow = NSDate().timeIntervalSince1970 as NSNumber
-        if let ret: AnyObject = redis.addValue(fileURL, withScore: timeNow, forKey: RedisFileScoreSortedSetsKey){
-            return ret
-        } else{
-            print("Redis ZADD failed: key=\(RedisFileScoreSortedSetsKey), member=\(fileURL), score=\(timeNow)")
-        }
-        return nil
+    func pushFileNameToRedis(fileURL: NSString) {
+        fileURL
     }
 
     
