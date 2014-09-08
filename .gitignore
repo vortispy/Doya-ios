@@ -21,3 +21,5 @@ Pod*
 !Podfile
 # Redis DB
 dump.rdb
+# secret file
+secrets.plist

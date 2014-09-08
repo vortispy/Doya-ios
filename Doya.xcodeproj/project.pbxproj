@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3904A9286EE54EDBA62CA0B7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DB3AA359AA14B77818988B5 /* libPods.a */; };
+		BE05E4A819BD824500BFCC9A /* secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE05E4A719BD824500BFCC9A /* secrets.plist */; };
 		BE75300619975D6F0026F61C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75300519975D6F0026F61C /* AppDelegate.swift */; };
 		BE75300819975D6F0026F61C /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75300719975D6F0026F61C /* MasterViewController.swift */; };
 		BE75300D19975D6F0026F61C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE75300B19975D6F0026F61C /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 		5167AC3D4D274A0BABBB00CC /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		A9345D5919A8B89400B9BBA5 /* DoyaTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DoyaTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		BE05E4A419BB091800BFCC9A /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
+		BE05E4A719BD824500BFCC9A /* secrets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = secrets.plist; sourceTree = "<group>"; };
 		BE18016419A8A1AF00F635C2 /* Doya-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Doya-Bridging-Header.h"; sourceTree = "<group>"; };
 		BE75300019975D6F0026F61C /* Doya.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Doya.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE75300419975D6F0026F61C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				BE75300419975D6F0026F61C /* Info.plist */,
+				BE05E4A719BD824500BFCC9A /* secrets.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 			files = (
 				BE75300D19975D6F0026F61C /* Main.storyboard in Resources */,
 				BE75300F19975D6F0026F61C /* Images.xcassets in Resources */,
+				BE05E4A819BD824500BFCC9A /* secrets.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
