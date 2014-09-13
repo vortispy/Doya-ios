@@ -15,6 +15,9 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
     let RedisFileScoreSortedSetsKey = "fileScores"
     let RedisPointKey = "pictures"
 
+    var RedisHost: NSString?
+    var RedisPort: NSNumber?
+    var RedisPass: NSString?
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -22,7 +25,18 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let redis = DSRedis(server: "localhost", port: 6379, password: nil)
+        let url = NSBundle.mainBundle().URLForResource("secrets", withExtension: "plist");
+        let dict = NSDictionary(contentsOfURL: url!);
+        print(dict["redis-host"])
+        RedisHost = dict["redis-host"] as? NSString
+        RedisPort = dict["redis-port"] as? NSNumber
+        RedisPass = dict["redis-pass"] as? NSString
+
+        var h = dict["redis-host"] as? NSString
+        var o = dict["redis-port"] as? NSNumber
+        var a = dict["redis-pass"] as? NSString
+        let redis = DSRedis(server: RedisHost, port: RedisPort!, password: RedisPass)
+//        let redis = DSRedis(server: "localhost", port: 6379, password: nil)
         let scores = redis.scoresForKey(RedisPointKey, withRange: NSRange(location: 0, length: 10))
         let dicScores = NSDictionary(dictionary: scores)
         let sortedKeys = dicScores.keysSortedByValueUsingComparator({(v1: AnyObject!, v2: AnyObject!) -> NSComparisonResult in
