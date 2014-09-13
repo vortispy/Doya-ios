@@ -12,7 +12,8 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
 
     var objects = NSMutableArray()
     
-
+    let RedisFileScoreSortedSetsKey = "fileScores"
+    let RedisPointKey = "pictures"
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,25 +21,36 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-//        self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
-//        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
-//        self.navigationItem.rightBarButtonItem = addButton
-        
+        let redis = DSRedis(server: "localhost", port: 6379, password: nil)
+        let scores = redis.scoresForKey(RedisPointKey, withRange: NSRange(location: 0, length: 10))
+        let dicScores = NSDictionary(dictionary: scores)
+        let sortedKeys = dicScores.keysSortedByValueUsingComparator({(v1: AnyObject!, v2: AnyObject!) -> NSComparisonResult in
+            if v1.integerValue > v2.integerValue{
+                return NSComparisonResult.OrderedDescending
+            }
+            if v1.integerValue < v2.integerValue{
+                return NSComparisonResult.OrderedAscending
+            }
+            return NSComparisonResult.OrderedSame
+        })
+        for key in sortedKeys{
+                let k = "\(key)"
+                let v = (scores[key as NSObject]! as NSString).integerValue
+                let doya = DoyaData()
+                doya.point = v
+                doya.url = k
+                objects.insertObject(doya, atIndex: 0)
+                let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+                self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func insertNewObject(sender: AnyObject) {
-        objects.insertObject(DoyaData(), atIndex: 0)
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-    }
-    
     @IBAction func addImage(){
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -135,9 +147,6 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
 
         return data
     }
-    
-    let RedisFileScoreSortedSetsKey = "fileScores"
-    let RedisPointKey = "pictures"
 
     func pushFileNameToRedis(fileURL: NSString) -> AnyObject? {
         let redis = DSRedis(server:"localhost", port:6379, password: nil)

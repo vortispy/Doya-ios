@@ -29,8 +29,9 @@ class DoyaCell: UITableViewCell {
         self.doya = data
         self.pointLabel.text = String(self.doya!.point)
         
-        var url = NSURL(string: "http://upload.wikimedia.org/wikipedia/commons/b/bc/Kolkrabe.jpg")
+//        var url = NSURL(string: "http://upload.wikimedia.org/wikipedia/commons/b/bc/Kolkrabe.jpg")
 
+        let url = NSURL(string: data.url)
         setAsyncImage(url)
     }
     
