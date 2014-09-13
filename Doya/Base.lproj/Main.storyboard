@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RhT-eC-uWx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RhT-eC-uWx">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
         <!--Master-->
@@ -77,14 +77,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="ImageList" id="tQt-TN-PWz">
-                        <barButtonItem key="leftBarButtonItem" title="Add Image" id="lt9-77-aQ0">
-                            <connections>
-                                <action selector="addImage" destination="pGg-6v-bdr" id="Xim-Fc-BFC"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Qu2-9Y-awP">
                             <connections>
-                                <action selector="insertNewObject:" destination="pGg-6v-bdr" id="TMx-WH-SOj"/>
+                                <action selector="addImage" destination="pGg-6v-bdr" id="3ap-cE-GuY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -97,7 +92,7 @@
         <scene sceneID="npM-Qb-DIQ">
             <objects>
                 <tableViewController id="fMF-dc-v5v" customClass="RankingViewController" customModule="Doya" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="250" sectionHeaderHeight="22" sectionFooterHeight="22" id="id5-B2-c3c">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="250" sectionHeaderHeight="22" sectionFooterHeight="22" id="id5-B2-c3c">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -359,9 +354,7 @@
                             <outlet property="delegate" destination="fMF-dc-v5v" id="WbN-ru-mva"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Ranking" id="ifd-Wi-1Ul">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="XZm-A4-xjL"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Ranking" id="ifd-Wi-1Ul"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3yK-hZ-84Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class DoyaData{
-    var keyName: String!
+    var url: String!
     var point: Int
     var rank: Int!
     var image: UIImage!
