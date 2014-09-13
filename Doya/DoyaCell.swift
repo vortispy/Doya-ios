@@ -51,12 +51,26 @@ class DoyaCell: UITableViewCell {
     }
     
     @IBAction func goodDoya(){
-        self.doya!.point += 1
-        self.pointLabel.text = String(self.doya!.point)
+        if let ret: AnyObject = zincrby(1){
+            self.doya!.point += 1
+            self.pointLabel.text = String(self.doya!.point)
+        }
     }
     
     @IBAction func badDoya(){
-        self.doya!.point -= 1
-        self.pointLabel.text = String(self.doya!.point)
+        if let ret: AnyObject = zincrby(-1){
+            self.doya!.point -= 1
+            self.pointLabel.text = String(self.doya!.point)
+        }
+    }
+    
+    func zincrby(increment: Int) -> AnyObject?{
+        let redis = DSRedis(server: "localhost", port: 6379, password: nil)
+        if let ret = redis.incrementObject(doya!.url, score: increment, forKey: "pictures"){
+            return ret
+        } else{
+            print("Redis ZINCRBY failed")
+        }
+        return nil
     }
 }
