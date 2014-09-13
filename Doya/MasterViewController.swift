@@ -167,9 +167,7 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let data = objects[indexPath.row] as DoyaData
-        if data.point == nil{
-            data.point = 0
-        }
+
         let cell = tableView.dequeueReusableCellWithIdentifier("DoyaCell", forIndexPath: indexPath) as DoyaCell
         cell.configureCell(data)
         return cell

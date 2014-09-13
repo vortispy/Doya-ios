@@ -35,7 +35,7 @@ class DoyaTests: XCTestCase {
         let url = bundle.URLForResource("sample", withExtension: "jpg")
         XCTAssertNotNil(url)
         
-        let image = UIImage(contentsOfFile: url.path)
+        let image = UIImage(contentsOfFile: url!.path!)
         XCTAssertNotNil(image)
         
         var data : NSData
@@ -63,7 +63,7 @@ class DoyaTests: XCTestCase {
         let url = bundle.URLForResource("sample", withExtension: "jpg")
         XCTAssertNotNil(url)
 
-        let image = UIImage(contentsOfFile: url.path)
+        let image = UIImage(contentsOfFile: url!.path!)
         XCTAssertNotNil(image)
         
         let data = UIImageJPEGRepresentation(image, 1.0)

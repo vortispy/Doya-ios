@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         let url = NSBundle.mainBundle().URLForResource("secrets", withExtension: "plist");
-        let dict = NSDictionary(contentsOfURL: url);
+        let dict = NSDictionary(contentsOfURL: url!);
         
         // Override point for customization after application launch.
         return true

@@ -24,9 +24,26 @@ class RankCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func configureCell(rank: String){
+    func configureCell(rank: String, url: NSURL, point: Int){
         self.rankPointLabel.text = rank
         self.rankIcon.image = UIImage(named: rank)
+        self.rankPointLabel.text = toString(point)
         
+        setAsyncImage(url)
+    }
+    
+    func setAsyncImage(url: NSURL) {
+        let queu = NSOperationQueue()
+        queu.addOperationWithBlock { () -> Void in
+            var data = NSData(contentsOfURL: url)
+            var picture = UIImage(data: data)
+            self.updatePicture(picture)
+        }
+    }
+    
+    func updatePicture(image: UIImage) {
+        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+            self.pictureView.image = image
+        }
     }
 }
