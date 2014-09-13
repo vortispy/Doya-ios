@@ -137,17 +137,24 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
     }
     
     let RedisFileScoreSortedSetsKey = "fileScores"
+    let RedisPointKey = "pictures"
+
     func pushFileNameToRedis(fileURL: NSString) -> AnyObject? {
         let redis = DSRedis(server:"localhost", port:6379, password: nil)
         let timeNow = NSDate().timeIntervalSince1970 as NSNumber
         if let ret: AnyObject = redis.addValue(fileURL, withScore: timeNow, forKey: RedisFileScoreSortedSetsKey){
-            return ret
         } else{
             print("Redis ZADD failed: key=\(RedisFileScoreSortedSetsKey), member=\(fileURL), score=\(timeNow)")
+            return nil
+        }
+        
+        if let ret2: AnyObject = redis.addValue(fileURL, withScore: 0, forKey: RedisPointKey){
+            return ret2
+        } else{
+            print("Redis ZADD failed: key=\(RedisPointKey), member=\(fileURL), score=\(0)")
         }
         return nil
     }
-
     
     // MARK: - Segues
 
