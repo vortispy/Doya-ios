@@ -22,33 +22,35 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
         super.awakeFromNib()
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    func createRedisWithPropertyList() -> DSRedis? {
         let url = NSBundle.mainBundle().URLForResource("secrets", withExtension: "plist");
         let dict = NSDictionary(contentsOfURL: url!);
-        print(dict["redis-host"])
-        RedisHost = dict["redis-host"] as? NSString
-        RedisPort = dict["redis-port"] as? NSNumber
-        RedisPass = dict["redis-pass"] as? NSString
-
-        var h = dict["redis-host"] as? NSString
-        var o = dict["redis-port"] as? NSNumber
-        var a = dict["redis-pass"] as? NSString
-        let redis = DSRedis(server: RedisHost, port: RedisPort!, password: RedisPass)
-//        let redis = DSRedis(server: "localhost", port: 6379, password: nil)
-        let scores = redis.scoresForKey(RedisPointKey, withRange: NSRange(location: 0, length: 10))
-        let dicScores = NSDictionary(dictionary: scores)
-        let sortedKeys = dicScores.keysSortedByValueUsingComparator({(v1: AnyObject!, v2: AnyObject!) -> NSComparisonResult in
-            if v1.integerValue > v2.integerValue{
-                return NSComparisonResult.OrderedDescending
+        
+        if let host = dict["redis-host"] as? NSString{
+            if let port = dict["redis-port"] as? NSNumber {
+                let pass = dict["redis-pass"] as NSString?
+                return DSRedis(server: host, port: port, password: pass)
             }
-            if v1.integerValue < v2.integerValue{
-                return NSComparisonResult.OrderedAscending
-            }
-            return NSComparisonResult.OrderedSame
-        })
-        for key in sortedKeys{
+        }
+        
+        return nil
+    }
+    
+    /* TODO: rename function name */
+    func fetch() {
+        if let redis = createRedisWithPropertyList() {
+            let scores = redis.scoresForKey(RedisPointKey, withRange: NSRange(location: 0, length: 10))
+            let dicScores = NSDictionary(dictionary: scores)
+            let sortedKeys = dicScores.keysSortedByValueUsingComparator({(v1: AnyObject!, v2: AnyObject!) -> NSComparisonResult in
+                if v1.integerValue > v2.integerValue{
+                    return NSComparisonResult.OrderedDescending
+                }
+                if v1.integerValue < v2.integerValue{
+                    return NSComparisonResult.OrderedAscending
+                }
+                return NSComparisonResult.OrderedSame
+            })
+            for key in sortedKeys{
                 let k = "\(key)"
                 let v = (scores[key as NSObject]! as NSString).integerValue
                 let doya = DoyaData()
@@ -57,7 +59,13 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
                 objects.insertObject(doya, atIndex: 0)
                 let indexPath = NSIndexPath(forRow: 0, inSection: 0)
                 self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            }
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        fetch()
     }
     
     override func didReceiveMemoryWarning() {

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3904A9286EE54EDBA62CA0B7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DB3AA359AA14B77818988B5 /* libPods.a */; };
-		BE05E4A819BD824500BFCC9A /* secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE05E4A719BD824500BFCC9A /* secrets.plist */; };
+		A956D2BF19C51E580034DBAD /* secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = A956D2BE19C51E580034DBAD /* secrets.plist */; };
 		BE75300619975D6F0026F61C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75300519975D6F0026F61C /* AppDelegate.swift */; };
 		BE75300819975D6F0026F61C /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75300719975D6F0026F61C /* MasterViewController.swift */; };
 		BE75300D19975D6F0026F61C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE75300B19975D6F0026F61C /* Main.storyboard */; };
@@ -35,8 +35,8 @@
 		1DB3AA359AA14B77818988B5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5167AC3D4D274A0BABBB00CC /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		A9345D5919A8B89400B9BBA5 /* DoyaTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DoyaTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		A956D2BE19C51E580034DBAD /* secrets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = secrets.plist; sourceTree = "<group>"; };
 		BE05E4A419BB091800BFCC9A /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
-		BE05E4A719BD824500BFCC9A /* secrets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = secrets.plist; sourceTree = "<group>"; };
 		BE18016419A8A1AF00F635C2 /* Doya-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Doya-Bridging-Header.h"; sourceTree = "<group>"; };
 		BE75300019975D6F0026F61C /* Doya.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Doya.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE75300419975D6F0026F61C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				BE75300419975D6F0026F61C /* Info.plist */,
-				BE05E4A719BD824500BFCC9A /* secrets.plist */,
+				A956D2BE19C51E580034DBAD /* secrets.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -232,7 +232,7 @@
 			files = (
 				BE75300D19975D6F0026F61C /* Main.storyboard in Resources */,
 				BE75300F19975D6F0026F61C /* Images.xcassets in Resources */,
-				BE05E4A819BD824500BFCC9A /* secrets.plist in Resources */,
+				A956D2BF19C51E580034DBAD /* secrets.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,7 +357,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -393,7 +393,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
