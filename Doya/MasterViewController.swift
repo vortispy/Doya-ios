@@ -39,12 +39,12 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
     /* TODO: rename function name */
     func fetch() {
         if let redis = createRedisWithPropertyList() {
-            let scores = redis.scoresForKey(RedisPointKey, withRange: NSRange(location: 0,  length: 10)) as Dictionary<String,String>
+            let scores = redis.scoresForKey(RedisPointKey, withRange: NSRange(location: 0,  length: 10)) as Dictionary<String,Int>
             let sortedKeys = (scores as NSDictionary).keysSortedByValueUsingSelector("compare:") as [String]
 
             for key in sortedKeys{
                 let doya = DoyaData()
-                doya.point = scores[key]!.toInt()!
+                doya.point = scores[key]!
                 doya.url = key
                 objects.insertObject(doya, atIndex: 0)
             }
