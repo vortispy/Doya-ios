@@ -39,27 +39,17 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
     /* TODO: rename function name */
     func fetch() {
         if let redis = createRedisWithPropertyList() {
-            let scores = redis.scoresForKey(RedisPointKey, withRange: NSRange(location: 0, length: 10))
-            let dicScores = NSDictionary(dictionary: scores)
-            let sortedKeys = dicScores.keysSortedByValueUsingComparator({(v1: AnyObject!, v2: AnyObject!) -> NSComparisonResult in
-                if v1.integerValue > v2.integerValue{
-                    return NSComparisonResult.OrderedDescending
-                }
-                if v1.integerValue < v2.integerValue{
-                    return NSComparisonResult.OrderedAscending
-                }
-                return NSComparisonResult.OrderedSame
-            })
+            let scores = redis.scoresForKey(RedisPointKey, withRange: NSRange(location: 0,  length: 10)) as Dictionary<String,String>
+            let sortedKeys = (scores as NSDictionary).keysSortedByValueUsingSelector("compare:") as [String]
+
             for key in sortedKeys{
-                let k = "\(key)"
-                let v = (scores[key as NSObject]! as NSString).integerValue
                 let doya = DoyaData()
-                doya.point = v
-                doya.url = k
+                doya.point = scores[key]!.toInt()!
+                doya.url = key
                 objects.insertObject(doya, atIndex: 0)
-                let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-                self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
             }
+            
+            self.tableView.reloadData()
         }
     }
     
