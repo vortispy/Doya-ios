@@ -11,15 +11,16 @@ import UIKit
 class RankingViewController: UITableViewController {
     let rankArray = ["rank01", "rank02", "rank03", "rank04", "rank05", "rank06", "rank07", "rank08", "rank09", "rank10"]
     
+    let RedisPointKey = "doyaScores"
+    
     var urlPath = [String:NSURL]()
     var points = [String:Int]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let redis = DSRedis(server: "localhost", port: 6379, password: nil)
-        let zdic = redis.scoresForKey("pictures", withRange: NSRange(location: 0, length: 10))
-        let keys = zdic.keys.array
+        let redis = DSRedis.sharedRedis()
+        let zdic = redis.scoresForKey(RedisPointKey, withRange: NSRange(location: 0, length: 10)) as Dictionary<String,Int>
         let dic = NSDictionary(dictionary: zdic)
         let sortedKeys = dic.keysSortedByValueUsingComparator({(v1: AnyObject!, v2: AnyObject!) -> NSComparisonResult in
             if v1.integerValue < v2.integerValue{
@@ -30,11 +31,12 @@ class RankingViewController: UITableViewController {
             }
             return NSComparisonResult.OrderedSame
         })
+        
         for var i = 0; i < 10; i += 1{
             if sortedKeys.endIndex > i{
-                let k = "\(sortedKeys[i])"
-                let v = (zdic[sortedKeys[i] as NSObject]! as NSString).integerValue
-                self.points[self.rankArray[i]] = v
+                let k = sortedKeys[i] as String
+                let v = zdic[k]!
+                self.points[self.rankArray[i]] = v as Int
                 self.urlPath[self.rankArray[i]] = NSURL(string: k)
             } else{
                 self.points[self.rankArray[i]] = 0

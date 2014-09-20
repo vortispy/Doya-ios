@@ -9,41 +9,39 @@
 import UIKit
 
 class MasterViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
     var objects = NSMutableArray()
     
     let RedisFileScoreSortedSetsKey = "fileScores"
-    let RedisPointKey = "pictures"
+    let RedisPointKey = "doyaScores"
 
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
+    
+    /* TODO: rename function name */
+    func fetch() {
+        if let redis = DSRedis.sharedRedis() {
+            let scores = redis.scoresForKey(RedisFileScoreSortedSetsKey, withRange: NSRange(location: 0,  length: 10)) as NSDictionary
+            
+            let sortedKeys = scores.keysSortedByValueUsingSelector("compare:") as [String]
+
+
+            for key in sortedKeys{
+                let doya = DoyaData()
+                doya.url = key
+                doya.point = redis.scoreForKey(RedisPointKey, member: key)
+                objects.insertObject(doya, atIndex: 0)
+            }
+
+            self.tableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let redis = DSRedis(server: "localhost", port: 6379, password: nil)
-        let scores = redis.scoresForKey(RedisPointKey, withRange: NSRange(location: 0, length: 10))
-        let dicScores = NSDictionary(dictionary: scores)
-        let sortedKeys = dicScores.keysSortedByValueUsingComparator({(v1: AnyObject!, v2: AnyObject!) -> NSComparisonResult in
-            if v1.integerValue > v2.integerValue{
-                return NSComparisonResult.OrderedDescending
-            }
-            if v1.integerValue < v2.integerValue{
-                return NSComparisonResult.OrderedAscending
-            }
-            return NSComparisonResult.OrderedSame
-        })
-        for key in sortedKeys{
-                let k = "\(key)"
-                let v = (scores[key as NSObject]! as NSString).integerValue
-                let doya = DoyaData()
-                doya.point = v
-                doya.url = k
-                objects.insertObject(doya, atIndex: 0)
-                let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-                self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-        }
+        fetch()
     }
     
     override func didReceiveMemoryWarning() {
@@ -56,6 +54,7 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
         imagePicker.delegate = self
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         presentViewController(imagePicker, animated: true, completion: nil)
+        
     }
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]!) {
@@ -80,8 +79,12 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
                 if res.statusCode == 200{
                     let dataURL = NSString(data: resData, encoding: NSUTF8StringEncoding)
                     print(dataURL)
-                    let redisResponse: AnyObject? = self.pushFileNameToRedis(dataURL)
-                    if redisResponse == nil{
+                    if let redisResponse: AnyObject? = self.pushFileNameToRedis(dataURL){
+                        let doya = DoyaData()
+                        doya.url = dataURL
+                        self.objects.insertObject(doya, atIndex: 0)
+                        NSOperationQueue.mainQueue().addOperationWithBlock({ self.tableView.reloadData() })
+                    } else{
                         self.imageUploadErrorMessageDialog("Redis ERROR")
                     }
                 } else{
@@ -149,7 +152,7 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
     }
 
     func pushFileNameToRedis(fileURL: NSString) -> AnyObject? {
-        let redis = DSRedis(server:"localhost", port:6379, password: nil)
+        let redis = DSRedis.sharedRedis()
         let timeNow = NSDate().timeIntervalSince1970 as NSNumber
         if let ret: AnyObject = redis.addValue(fileURL, withScore: timeNow, forKey: RedisFileScoreSortedSetsKey){
         } else{
