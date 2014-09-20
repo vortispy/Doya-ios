@@ -12,6 +12,7 @@ class DoyaCell: UITableViewCell {
     @IBOutlet weak var pointLabel: UILabel!
     @IBOutlet weak var pictureView: UIImageView!
     
+    let RedisPointKey = "doyaScores"
     var doya: DoyaData?
     
     override func awakeFromNib() {
@@ -29,7 +30,6 @@ class DoyaCell: UITableViewCell {
         self.doya = data
         self.pointLabel.text = String(self.doya!.point)
         
-//        var url = NSURL(string: "http://upload.wikimedia.org/wikipedia/commons/b/bc/Kolkrabe.jpg")
 
         let url = NSURL(string: data.url)
         setAsyncImage(url)
@@ -65,8 +65,8 @@ class DoyaCell: UITableViewCell {
     }
     
     func zincrby(increment: Int) -> AnyObject?{
-        let redis = DSRedis(server: "localhost", port: 6379, password: nil)
-        if let ret = redis.incrementObject(doya!.url, score: increment, forKey: "pictures"){
+        let redis = DSRedis.sharedRedis()
+        if let ret = redis.incrementObject(doya!.url, score: increment, forKey: RedisPointKey){
             return ret
         } else{
             print("Redis ZINCRBY failed")

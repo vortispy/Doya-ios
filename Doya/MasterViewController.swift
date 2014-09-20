@@ -9,46 +9,32 @@
 import UIKit
 
 class MasterViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
     var objects = NSMutableArray()
     
     let RedisFileScoreSortedSetsKey = "fileScores"
-    let RedisPointKey = "pictures"
+    let RedisPointKey = "doyaScores"
 
-    var RedisHost: NSString?
-    var RedisPort: NSNumber?
-    var RedisPass: NSString?
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
-    func createRedisWithPropertyList() -> DSRedis? {
-        let url = NSBundle.mainBundle().URLForResource("secrets", withExtension: "plist");
-        let dict = NSDictionary(contentsOfURL: url!);
-        
-        if let host = dict["redis-host"] as? NSString{
-            if let port = dict["redis-port"] as? NSNumber {
-                let pass = dict["redis-pass"] as NSString?
-                return DSRedis(server: host, port: port, password: pass)
-            }
-        }
-        
-        return nil
-    }
     
     /* TODO: rename function name */
     func fetch() {
-        if let redis = createRedisWithPropertyList() {
-            let scores = redis.scoresForKey(RedisPointKey, withRange: NSRange(location: 0,  length: 10)) as Dictionary<String,Int>
-            let sortedKeys = (scores as NSDictionary).keysSortedByValueUsingSelector("compare:") as [String]
+        if let redis = DSRedis.sharedRedis() {
+            let scores = redis.scoresForKey(RedisFileScoreSortedSetsKey, withRange: NSRange(location: 0,  length: 10)) as NSDictionary
+            
+            let sortedKeys = scores.keysSortedByValueUsingSelector("compare:") as [String]
+
 
             for key in sortedKeys{
                 let doya = DoyaData()
-                doya.point = scores[key]!
                 doya.url = key
+                doya.point = redis.scoreForKey(RedisPointKey, member: key)
                 objects.insertObject(doya, atIndex: 0)
             }
-            
+
             self.tableView.reloadData()
         }
     }
@@ -68,6 +54,7 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
         imagePicker.delegate = self
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         presentViewController(imagePicker, animated: true, completion: nil)
+        
     }
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]!) {
@@ -92,8 +79,12 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
                 if res.statusCode == 200{
                     let dataURL = NSString(data: resData, encoding: NSUTF8StringEncoding)
                     print(dataURL)
-                    let redisResponse: AnyObject? = self.pushFileNameToRedis(dataURL)
-                    if redisResponse == nil{
+                    if let redisResponse: AnyObject? = self.pushFileNameToRedis(dataURL){
+                        let doya = DoyaData()
+                        doya.url = dataURL
+                        self.objects.insertObject(doya, atIndex: 0)
+                        NSOperationQueue.mainQueue().addOperationWithBlock({ self.tableView.reloadData() })
+                    } else{
                         self.imageUploadErrorMessageDialog("Redis ERROR")
                     }
                 } else{
@@ -161,7 +152,7 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
     }
 
     func pushFileNameToRedis(fileURL: NSString) -> AnyObject? {
-        let redis = DSRedis(server:"localhost", port:6379, password: nil)
+        let redis = DSRedis.sharedRedis()
         let timeNow = NSDate().timeIntervalSince1970 as NSNumber
         if let ret: AnyObject = redis.addValue(fileURL, withScore: timeNow, forKey: RedisFileScoreSortedSetsKey){
         } else{
