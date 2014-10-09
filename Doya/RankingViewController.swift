@@ -13,6 +13,8 @@ class RankingViewController: UITableViewController {
     
     let RedisPointKey = "doyaScores"
     
+    var rankingRows: Int?
+    
     var urlPath = [String:NSURL]()
     var points = [String:Int]()
 
@@ -32,17 +34,11 @@ class RankingViewController: UITableViewController {
             return NSComparisonResult.OrderedSame
         })
         
-        for var i = 0; i < 10; i += 1{
-            if sortedKeys.endIndex > i{
-                let k = sortedKeys[i] as String
-                let v = zdic[k]!
-                self.points[self.rankArray[i]] = v as Int
-                self.urlPath[self.rankArray[i]] = NSURL(string: k)
-            } else{
-                self.points[self.rankArray[i]] = 0
-                self.urlPath[self.rankArray[i]] = NSURL(string: "http://upload.wikimedia.org/wikipedia/commons/b/bc/Kolkrabe.jpg")
-            }
-            
+        for var i = 0; i < sortedKeys.endIndex; i += 1{
+            let k = sortedKeys[i] as String
+            let v = zdic[k]!
+            self.points[self.rankArray[i]] = v as Int
+            self.urlPath[self.rankArray[i]] = NSURL(string: k)
         }
 
         // Uncomment the following line to preserve selection between presentations
@@ -68,7 +64,7 @@ class RankingViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 10
+        return urlPath.count
     }
 
 
