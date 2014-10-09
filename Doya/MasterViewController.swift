@@ -14,6 +14,7 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
     
     let RedisFileScoreSortedSetsKey = "fileScores"
     let RedisPointKey = "doyaScores"
+    let RedisReportKey = "report"
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -188,6 +189,7 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
         let data = objects[indexPath.row] as DoyaData
 
         let cell = tableView.dequeueReusableCellWithIdentifier("DoyaCell", forIndexPath: indexPath) as DoyaCell
+        cell.viewController = self
         cell.configureCell(data)
         return cell
     }

@@ -14,6 +14,7 @@ class DoyaCell: UITableViewCell {
     
     let RedisPointKey = "doyaScores"
     var doya: DoyaData?
+    var viewController: UIViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -63,6 +64,30 @@ class DoyaCell: UITableViewCell {
             self.pointLabel.text = String(self.doya!.point)
         }
     }
+    
+    @IBAction func reportInappropriate(){
+        var alertController = UIAlertController(title: "不適切な画像を報告する", message: "この画像を不適切なものとして報告します。\nよろしいですか？", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        let yesAction = UIAlertAction(title: "はい", style: UIAlertActionStyle.Default, handler: {
+            (action) -> Void in
+            print("yesAction\n")
+            if let redis = DSRedis.sharedRedis(){
+                redis.incrementObject(self.doya!.url, score: 1, forKey: "report")
+            }
+        })
+        let noAction = UIAlertAction(title: "いいえ", style: UIAlertActionStyle.Cancel, handler: {
+            (action) -> Void in
+            print("noAction\n")
+        })
+        
+        alertController.addAction(yesAction)
+        alertController.addAction(noAction)
+        
+        self.viewController!.presentViewController(alertController, animated: true, completion: nil)
+        
+    }
+    
+
     
     func zincrby(increment: Int) -> AnyObject?{
         let redis = DSRedis.sharedRedis()

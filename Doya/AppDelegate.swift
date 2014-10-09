@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func createRedisWithPropertyList() -> DSRedis? {
         let url = NSBundle.mainBundle().URLForResource("secrets", withExtension: "plist");
         let dict = NSDictionary(contentsOfURL: url!);
-        println(dict)
+
         if let host = dict["redis-host"] as? NSString{
             if let port = dict["redis-port"] as? UInt {
                 let pass = dict["redis-pass"] as NSString?
