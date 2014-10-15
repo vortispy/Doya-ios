@@ -20,14 +20,18 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
     
     let userId = UIDevice().identifierForVendor.UUIDString
     
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    
     /* TODO: rename function name */
+    var pivot = 0
     func fetch() {
+        // no process twice!
+        if pivot != 0 {
+            return
+        }
+        pivot = 1
+        NSTimer.scheduledTimerWithTimeInterval(10, target: NSBlockOperation(block: { () -> Void in
+            self.pivot = 0
+        }), selector: "main", userInfo: nil, repeats: false)
+        
         if let redis = DSRedis.sharedRedis() {
             let scores = redis.scoresForKey(RedisFileScoreSortedSetsKey, withRange: NSRange(location: 0,  length: 10)) as NSDictionary
             
@@ -47,8 +51,12 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetch()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "fetch", name: UIApplicationDidBecomeActiveNotification, object: nil)
     }
+    
+//    override func dealloc() {
+//        NSNotificationCenter.defaultCenter().removeObserver(self)
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

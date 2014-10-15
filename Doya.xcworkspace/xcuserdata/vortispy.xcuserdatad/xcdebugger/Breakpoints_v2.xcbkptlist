@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Doya/MasterViewController.swift"
-            timestampString = "434712526.844801"
+            timestampString = "434714958.132434"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
             landmarkName = "pushFileNameToRedis(_:)"
             landmarkType = "5">
          </BreakpointContent>
