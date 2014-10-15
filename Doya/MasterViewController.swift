@@ -15,14 +15,23 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
     let RedisFileScoreSortedSetsKey = "fileScores"
     let RedisPointKey = "doyaScores"
     let RedisReportKey = "report"
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
+    
+    let EVAL_SHA = "665bc81b1e2e84d22625d57b01af037844b9b829"
+    
+    let userId = UIDevice().identifierForVendor.UUIDString
     
     /* TODO: rename function name */
+    var pivot = 0
     func fetch() {
+        // no process twice!
+        if pivot != 0 {
+            return
+        }
+        pivot = 1
+        NSTimer.scheduledTimerWithTimeInterval(10, target: NSBlockOperation(block: { () -> Void in
+            self.pivot = 0
+        }), selector: "main", userInfo: nil, repeats: false)
+        
         if let redis = DSRedis.sharedRedis() {
             let scores = redis.scoresForKey(RedisFileScoreSortedSetsKey, withRange: NSRange(location: 0,  length: 10)) as NSDictionary
             
@@ -42,8 +51,12 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetch()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "fetch", name: UIApplicationDidBecomeActiveNotification, object: nil)
     }
+    
+//    override func dealloc() {
+//        NSNotificationCenter.defaultCenter().removeObserver(self)
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -80,11 +93,15 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
                 if res.statusCode == 200{
                     let dataURL = NSString(data: resData, encoding: NSUTF8StringEncoding)
                     print(dataURL)
-                    if let redisResponse: AnyObject? = self.pushFileNameToRedis(dataURL){
-                        let doya = DoyaData()
-                        doya.url = dataURL
-                        self.objects.insertObject(doya, atIndex: 0)
-                        NSOperationQueue.mainQueue().addOperationWithBlock({ self.tableView.reloadData() })
+                    if let redisResponse: String? = self.pushFileNameToRedis(dataURL){
+                        if redisResponse == "black"{
+                            self.imageUploadErrorMessageDialog("YOU ARE IN BLACK LIST")
+                        } else{
+                            let doya = DoyaData()
+                            doya.url = dataURL
+                            self.objects.insertObject(doya, atIndex: 0)
+                            NSOperationQueue.mainQueue().addOperationWithBlock({ self.tableView.reloadData() })
+                        }
                     } else{
                         self.imageUploadErrorMessageDialog("Redis ERROR")
                     }
@@ -152,19 +169,14 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
         return data
     }
 
-    func pushFileNameToRedis(fileURL: NSString) -> AnyObject? {
+    func pushFileNameToRedis(fileURL: NSString) -> String? {
         let redis = DSRedis.sharedRedis()
         let timeNow = NSDate().timeIntervalSince1970 as NSNumber
-        if let ret: AnyObject = redis.addValue(fileURL, withScore: timeNow, forKey: RedisFileScoreSortedSetsKey){
-        } else{
-            print("Redis ZADD failed: key=\(RedisFileScoreSortedSetsKey), member=\(fileURL), score=\(timeNow)")
-            return nil
-        }
+        let keys = [userId, fileURL]
+        let args = [timeNow.description]
         
-        if let ret2: AnyObject = redis.addValue(fileURL, withScore: 0, forKey: RedisPointKey){
-            return ret2
-        } else{
-            print("Redis ZADD failed: key=\(RedisPointKey), member=\(fileURL), score=\(0)")
+        if let ret = redis.evalWithSHA(EVAL_SHA, keys: keys as [AnyObject], args: args) as? String{
+            return ret
         }
         return nil
     }
