@@ -105,6 +105,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
+      customArchiveName = "Doya"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
