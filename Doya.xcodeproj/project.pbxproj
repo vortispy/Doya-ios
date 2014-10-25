@@ -15,6 +15,7 @@
 		BE75300F19975D6F0026F61C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE75300E19975D6F0026F61C /* Images.xcassets */; };
 		BE75301B19975D6F0026F61C /* DoyaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75301A19975D6F0026F61C /* DoyaTests.swift */; };
 		BE75302B199F2B140026F61C /* DoyaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75302A199F2B140026F61C /* DoyaCell.swift */; };
+		BE9B4DA719FB7B0C00172E1E /* AgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9B4DA619FB7B0C00172E1E /* AgreementViewController.swift */; };
 		BEB6F83919A8604B002BFCE9 /* DoyaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB6F83819A8604B002BFCE9 /* DoyaData.swift */; };
 		BEBDEAEE19A784730022D5AE /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBDEAED19A784730022D5AE /* RankingViewController.swift */; };
 		BEBDEAF019A78AF80022D5AE /* RankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBDEAEF19A78AF80022D5AE /* RankCell.swift */; };
@@ -48,6 +49,7 @@
 		BE75301919975D6F0026F61C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE75301A19975D6F0026F61C /* DoyaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoyaTests.swift; sourceTree = "<group>"; };
 		BE75302A199F2B140026F61C /* DoyaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoyaCell.swift; sourceTree = "<group>"; };
+		BE9B4DA619FB7B0C00172E1E /* AgreementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgreementViewController.swift; sourceTree = "<group>"; };
 		BEB6F83819A8604B002BFCE9 /* DoyaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoyaData.swift; sourceTree = "<group>"; };
 		BEBDEAED19A784730022D5AE /* RankingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
 		BEBDEAEF19A78AF80022D5AE /* RankCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankCell.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				BEB6F83819A8604B002BFCE9 /* DoyaData.swift */,
 				BE18016419A8A1AF00F635C2 /* Doya-Bridging-Header.h */,
 				BE05E4A419BB091800BFCC9A /* MyPlayground.playground */,
+				BE9B4DA619FB7B0C00172E1E /* AgreementViewController.swift */,
 			);
 			path = Doya;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				BEBDEAF019A78AF80022D5AE /* RankCell.swift in Sources */,
 				BE75300619975D6F0026F61C /* AppDelegate.swift in Sources */,
 				BEB6F83919A8604B002BFCE9 /* DoyaData.swift in Sources */,
+				BE9B4DA719FB7B0C00172E1E /* AgreementViewController.swift in Sources */,
 				BEBDEAEE19A784730022D5AE /* RankingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
