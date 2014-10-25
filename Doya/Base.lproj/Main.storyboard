@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RhT-eC-uWx">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -88,18 +87,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="ImageList" id="tQt-TN-PWz">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="Yg7-zU-jnO">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="I3a-9Y-rWI">
-                                <rect key="frame" x="16" y="7" width="70" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="利用規約">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="Q8U-EK-ebR" kind="show" id="8dZ-uc-56e"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Qu2-9Y-awP">
                             <connections>
                                 <action selector="addImage" destination="pGg-6v-bdr" id="3ap-cE-GuY"/>
@@ -111,10 +98,10 @@
             </objects>
             <point key="canvasLocation" x="847" y="-19"/>
         </scene>
-        <!--View Controller-->
+        <!--Agreement View Controller-->
         <scene sceneID="cEB-FT-85X">
             <objects>
-                <viewController id="Q8U-EK-ebR" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="agreement" id="Q8U-EK-ebR" customClass="AgreementViewController" customModule="Doya" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DS4-1n-1Pl"/>
                         <viewControllerLayoutGuide type="bottom" id="GIP-4M-ULk"/>
@@ -124,7 +111,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eh4-eb-FiU">
-                                <rect key="frame" x="0.0" y="64" width="600" height="618"/>
+                                <rect key="frame" x="0.0" y="40" width="328" height="322"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text"># はじめに
 この利用規約はvortispyが提供するアプリDoyaを利用するユーザーに適用される。
@@ -145,13 +132,22 @@ Doyaのユーザーは次の行為を行ってはならない。
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EWr-l1-xDl">
+                                <rect key="frame" x="0.0" y="370" width="104" height="30"/>
+                                <state key="normal" title="同意する">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="agree" destination="Q8U-EK-ebR" eventType="touchDown" id="77y-9A-Leg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YbN-Ef-hbM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1542" y="-19"/>
+            <point key="canvasLocation" x="-793" y="-442"/>
         </scene>
         <!--Ranking-->
         <scene sceneID="npM-Qb-DIQ">

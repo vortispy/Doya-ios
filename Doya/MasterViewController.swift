@@ -7,18 +7,19 @@
 //
 
 import UIKit
+let RedisFileScoreSortedSetsKey = "fileScores"
+let RedisPointKey = "doyaScores"
+let RedisReportKey = "report"
+let EVAL_SHA = "665bc81b1e2e84d22625d57b01af037844b9b829"
 
 class MasterViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var objects = NSMutableArray()
     
-    let RedisFileScoreSortedSetsKey = "fileScores"
-    let RedisPointKey = "doyaScores"
-    let RedisReportKey = "report"
-    
-    let EVAL_SHA = "665bc81b1e2e84d22625d57b01af037844b9b829"
     
     let userId = UIDevice().identifierForVendor.UUIDString
+    
+    let agree: NSUserDefaults = NSUserDefaults.standardUserDefaults()
     
     /* TODO: rename function name */
     var pivot = 0
@@ -32,26 +33,38 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
             self.pivot = 0
         }), selector: "main", userInfo: nil, repeats: false)
         
-        if let redis = DSRedis.sharedRedis() {
-            let scores = redis.scoresForKey(RedisFileScoreSortedSetsKey, withRange: NSRange(location: 0,  length: 10)) as NSDictionary
-            
-            let sortedKeys = scores.keysSortedByValueUsingSelector("compare:") as [String]
-
-
-            for key in sortedKeys{
-                let doya = DoyaData()
-                doya.url = key
-                doya.point = redis.scoreForKey(RedisPointKey, member: key)
-                objects.insertObject(doya, atIndex: 0)
+        NSOperationQueue().addOperationWithBlock {
+            if let redis = DSRedis.sharedRedis() {
+                let scores = redis.scoresForKey(RedisFileScoreSortedSetsKey, withRange: NSRange(location: 0,  length: 10)) as NSDictionary
+                
+                let sortedKeys = scores.keysSortedByValueUsingSelector("compare:") as [String]
+                
+                
+                for key in sortedKeys{
+                    let doya = DoyaData()
+                    doya.url = key
+                    doya.point = redis.scoreForKey(RedisPointKey, member: key)
+                    self.objects.insertObject(doya, atIndex: 0)
+                }
+                
+                NSOperationQueue.mainQueue().addOperationWithBlock { self.tableView.reloadData() }
             }
-
-            self.tableView.reloadData()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "fetch", name: UIApplicationDidBecomeActiveNotification, object: nil)
+        
+//        NSUserDefaults.standardUserDefaults().removeObjectForKey(Doya.AGREEMENT)
+//        NSUserDefaults.standardUserDefaults().synchronize()
+        let storyboard = self.storyboard
+        let agreement = storyboard?.instantiateViewControllerWithIdentifier("agreement") as UIViewController
+        let ok: AnyObject? = NSUserDefaults.standardUserDefaults().objectForKey(Doya.AGREEMENT)
+        if ok == nil {
+            self.presentViewController(agreement, animated: true, completion: nil)
+        }
+
     }
     
 //    override func dealloc() {
@@ -61,6 +74,10 @@ class MasterViewController: UITableViewController, UIImagePickerControllerDelega
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
     }
 
     @IBAction func addImage(){

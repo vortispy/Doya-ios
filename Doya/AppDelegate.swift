@@ -12,7 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
                             
     var window: UIWindow?
-
+    var mainViewController : UIViewController?
 
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         if let redis = createRedisWithPropertyList(){
@@ -20,6 +20,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else{
             return false
         }
+        /*
+        let storyboard = self.window?.rootViewController?.storyboard
+        let kiyaku = storyboard?.instantiateViewControllerWithIdentifier("kiyaku") as UIViewController
+        mainViewController = self.window?.rootViewController
+        if true {
+            self.window?.rootViewController = kiyaku
+            self.exchangeRootViewController()
+        }
+*/
         // Override point for customization after application launch.
         return true
     }
